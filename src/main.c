@@ -3,6 +3,7 @@
 
 
 int main(){
-
-  return main_internal();
+    main_internal();  
+    return 0;
 }
+

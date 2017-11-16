@@ -1,10 +1,8 @@
-
 #include "tr.h"
 
 
 
 int main_internal() {
-
   // Configure pins
   // Loop
   while(1)

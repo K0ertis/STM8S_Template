@@ -1,0 +1,16 @@
+-muwx
+-i build/main.ihx
+-Y
+-b HOME = 0x8000
+-b DATA = 0x0001
+-k /home/kal/.local/bin/../share/sdcc/lib/stm8
+-k /home/kal/.local/share/sdcc/lib/stm8
+-l stm8
+-l stm8
+build/main.rel
+src/tr.rel
+src/fsm.rel
+src/uart.rel
+src/hal.rel
+
+-e

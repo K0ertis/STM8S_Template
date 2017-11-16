@@ -25,7 +25,7 @@ REL = $(SRC:%.c=%.rel)
 STM8_CC=sdcc
 STM8_LD=sdld
 CCVERSION = $(shell $(STM8_CC) --version )
-STM8_CFLAGS= -mstm8 $(STM8_INCLUDES) --std-sdcc11  -D STM8S103
+STM8_CFLAGS= -mstm8 $(STM8_INCLUDES) --std-sdcc11 
 $(info $$CFLAG is [${STM8_CFLAGS}])
 #$(info $$MAIN_FILE is [${MAIN_FILE}])
 
@@ -40,7 +40,7 @@ stm8_debug: $(OUTPUT_DEBUG)
 	@echo compile .elf under $(DEBUG_DIR)!
 
 $(OUTPUT_DEBUG):$(MAIN_FILE) $(REL)
-	$(STM8_CC) $(STM8_CFLAGS) $(DEBUGFLAG)  $(MAIN_FILE) $(REL) $(LD_LIBS) -o $@.elf
+	$(STM8_CC) $(STM8_CFLAGS) $(DEBUGFLAG)  -D STM8S103 $(MAIN_FILE) $(REL) $(LD_LIBS) -o $@.elf
 
 %.rel:%.c
 	@echo Build .c.rel "$@"
@@ -58,3 +58,9 @@ $(OUTPUT):$(MAIN_FILE) $(REL)
 
 flash: 
 	@stm8flash -cstlink -pstm8s003?3 -w $(OUTPUT).ihx
+.PHONY: clean
+clean:
+	@echo Making clean
+	rm -f $(REL) $(SRC_DIR)*.asm $(SRC_DIR)*.lst $(SRC_DIR)*.rst $(SRC_DIR)*.sym $(BUILD_DIR)*
+
+
